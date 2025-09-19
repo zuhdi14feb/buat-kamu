@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ucapan Romantis</title>
+  <style>
+    body {
+      background: #fdf6f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: "Segoe UI", sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+    #container {
+      text-align: center;
+      position: relative;
+    }
+    #foto {
+      max-width: 300px;
+      border-radius: 20px;
+      cursor: pointer;
+      position: relative;
+      z-index: 2;
+    }
+    #teks {
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 228, 236, 0.9);
+      padding: 10px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      font-size: 1.2rem;
+      color: #d6336c;
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out, top 0.6s ease-in-out;
+      white-space: nowrap;
+    }
+    #teks.muncul {
+      opacity: 1;
+      top: -80px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="teks">✨ Tekan pipinya, siapa tahu ada kejutan manis di balik senyumnya! ✨</div>
+    <img id="foto" src="foto.jpg" alt="Foto Senyum">
+  </div>
+
+  <script>
+    const teks = document.getElementById("teks");
+    const foto = document.getElementById("foto");
+
+    foto.addEventListener("click", function(event) {
+      const rect = foto.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+
+      if (x < rect.width / 2) {
+        // pipi kiri
+        tampilkanUcapan("Tetap semangat, ada banyak hal indah menantimu! 🌟");
+      } else {
+        // pipi kanan
+        tampilkanUcapan("Semoga harimu penuh senyum dan keberkahan. 🌸");
+      }
+    });
+
+    function tampilkanUcapan(pesan) {
+      teks.innerHTML = pesan;
+      teks.classList.remove("muncul");
+      setTimeout(() => {
+        teks.classList.add("muncul");
+      }, 100);
+    }
+  </script>
+</body>
+</html>
